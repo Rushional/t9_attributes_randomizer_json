@@ -1,9 +1,12 @@
 package com.rushional.t9_attr_randomizer_json.models;
 
+import lombok.Getter;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+@Getter
 public class StatRollsSet {
     List<StatRoll> statRollsList;
 
@@ -14,6 +17,4 @@ public class StatRollsSet {
         }
         statRollsList.sort(Comparator.comparingInt(StatRoll::getRollResult).reversed());
     }
-
-    //    TODO: make sure there are exactly 6 and they are ordered correctly
 }

@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Task 9: D&D Randomizer w/ JSON</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+
+<!-- TODO: add a script at the start that makes a request to reroll -->
+
+<h1>Crappy output of randomized attributes here:</h1>
+<p id="crappyOutput">This text will be replaced. It doesn't want to. It doesn't have a choice.</p>
+<button id="rerollButton">Reroll</button>
+
+
+<!-- This won't work anymore. I need to parse the JSON somehow -->
+
+<!--<script th:inline="javascript">-->
+<!--    var rerollButton = document.getElementById("rerollButton");-->
+<!--    var crappyOutput = document.getElementById("crappyOutput");-->
+<!--    rerollButton.onclick = function (e) {-->
+<!--        fetch("/reroll", {method: "POST"})-->
+<!--            .then(response => response.text())-->
+<!--            .then(text => text.replaceAll("\\n", "<br/>"))-->
+<!--            // .then( text => crappyOutput.text = text)-->
+<!--            .then(text => crappyOutput.innerHTML = text)-->
+<!--        ;-->
+<!--    }-->
+<!--</script>-->
+
+</body>
+</html>
