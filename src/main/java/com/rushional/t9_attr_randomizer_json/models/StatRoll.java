@@ -9,16 +9,16 @@ import java.util.List;
 
 @Getter
 public class StatRoll {
-    List<Integer> rollsList;
+    List<Integer> diceRolls;
     final int rollResult;
 
     public StatRoll() {
-        rollsList = new ArrayList<>();
+        diceRolls = new ArrayList<>();
         for (int i = 0; i < 4; i++) {
-            rollsList.add(RollD6.call());
+            diceRolls.add(RollD6.call());
         }
-        rollsList.sort(Collections.reverseOrder());
-        rollResult = rollsList.get(0) + rollsList.get(1) + rollsList.get(2);
+        diceRolls.sort(Collections.reverseOrder());
+        rollResult = diceRolls.get(0) + diceRolls.get(1) + diceRolls.get(2);
     }
 
     //    TODO: make sure there are exactly 4 elements ordered highest to lowest

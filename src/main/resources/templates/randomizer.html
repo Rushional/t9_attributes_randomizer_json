@@ -6,27 +6,49 @@
 </head>
 <body>
 
-<!-- TODO: add a script at the start that makes a request to reroll -->
-
 <h1>Crappy output of randomized attributes here:</h1>
-<p id="crappyOutput">This text will be replaced. It doesn't want to. It doesn't have a choice.</p>
+<p id="stat0"></p>
+<p id="stat1"></p>
+<p id="stat2"></p>
+<p id="stat3"></p>
+<p id="stat4"></p>
+<p id="stat5"></p>
 <button id="rerollButton">Reroll</button>
 
 
-<!-- This won't work anymore. I need to parse the JSON somehow -->
+<script th:inline="javascript">
+    let rerollButton = document.getElementById("rerollButton");
+    let stat0 = document.getElementById("stat0");
+    let stat1 = document.getElementById("stat1");
+    let stat2 = document.getElementById("stat2");
+    let stat3 = document.getElementById("stat3");
+    let stat4 = document.getElementById("stat4");
+    let stat5 = document.getElementById("stat5");
 
-<!--<script th:inline="javascript">-->
-<!--    var rerollButton = document.getElementById("rerollButton");-->
-<!--    var crappyOutput = document.getElementById("crappyOutput");-->
-<!--    rerollButton.onclick = function (e) {-->
-<!--        fetch("/reroll", {method: "POST"})-->
-<!--            .then(response => response.text())-->
-<!--            .then(text => text.replaceAll("\\n", "<br/>"))-->
-<!--            // .then( text => crappyOutput.text = text)-->
-<!--            .then(text => crappyOutput.innerHTML = text)-->
-<!--        ;-->
-<!--    }-->
-<!--</script>-->
+    function rollStats() {
+        fetch("/roll", {method: "POST"})
+            .then(response => response.json())
+            .then(statRoll => outputToPage(statRoll))
+        ;
+    }
+
+    function outputToPage(statRoll) {
+        console.log(statRoll);
+        // innerHTML works but text does not. We'll fix it as we improve how this whole thing looks
+        stat0.innerHTML = statRoll.statRollsList[0].diceRolls;
+        stat1.innerHTML = statRoll.statRollsList[1].diceRolls;
+        stat2.innerHTML = statRoll.statRollsList[2].diceRolls;
+        stat3.innerHTML = statRoll.statRollsList[3].diceRolls;
+        stat4.innerHTML = statRoll.statRollsList[4].diceRolls;
+        stat5.innerHTML = statRoll.statRollsList[5].diceRolls;
+    }
+
+    window.onload = () => {
+        rollStats();
+    };
+
+    rerollButton.onclick = () => rollStats();
+</script>
 
 </body>
 </html>

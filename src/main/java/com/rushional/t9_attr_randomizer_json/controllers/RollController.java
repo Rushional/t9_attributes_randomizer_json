@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class RerollController {
-    @PostMapping("/reroll")
+public class RollController {
+    @PostMapping("/roll")
     public String getStatsRoll() {
         StatRollsSet rollsSet = new StatRollsSet();
         //Creating the ObjectMapper object
@@ -24,7 +24,7 @@ public class RerollController {
     }
 
 //    TODO: remove this it was just to test and see the JSON in a browser
-    @GetMapping("/reroll")
+    @GetMapping("/roll")
     public String showJson() {
         StatRollsSet rollsSet = new StatRollsSet();
         ObjectMapper mapper = new ObjectMapper();
