@@ -7,12 +7,12 @@
 <body>
 
 <h1>Auto-generated stat rolls for your D&D character:</h1>
-<p id="stat0">Roll 1</p>
-<p id="stat1">Roll 2</p>
-<p id="stat2">Roll 3</p>
-<p id="stat3">Roll 4</p>
-<p id="stat4">Roll 5</p>
-<p id="stat5">Roll 6</p>
+<p id="stat0">Roll 1:</p>
+<p id="stat1">Roll 2:</p>
+<p id="stat2">Roll 3:</p>
+<p id="stat3">Roll 4:</p>
+<p id="stat4">Roll 5:</p>
+<p id="stat5">Roll 6:</p>
 <button id="rerollButton">Reroll</button>
 
 
@@ -32,50 +32,21 @@
         ;
     }
 
-    function outputToPage(statRoll) {
-        console.log(statRoll);
-        var roll0Sum = statRoll.statRollsList[0].diceRolls[0] +
-            statRoll.statRollsList[0].diceRolls[1] +
-            statRoll.statRollsList[0].diceRolls[2];
-        stat0.innerHTML = 'Roll 1: ' + roll0Sum +
-            ' (' + statRoll.statRollsList[0].diceRolls + ')';
+    function outputToPage(statRollSet) {
+        console.log(statRollSet);
+        stat0.innerHTML = getStatHtml(statRollSet.statRollsList[0], 1);
+        stat1.innerHTML = getStatHtml(statRollSet.statRollsList[1], 2);
+        stat2.innerHTML = getStatHtml(statRollSet.statRollsList[2], 3);
+        stat3.innerHTML = getStatHtml(statRollSet.statRollsList[3], 4);
+        stat4.innerHTML = getStatHtml(statRollSet.statRollsList[4], 5);
+        stat5.innerHTML = getStatHtml(statRollSet.statRollsList[5], 6);
+    }
 
-        var roll1Sum = statRoll.statRollsList[1].diceRolls[0] +
-            statRoll.statRollsList[1].diceRolls[1] +
-            statRoll.statRollsList[1].diceRolls[2];
-        stat1.innerHTML = 'Roll 2: ' + roll1Sum +
-            ' (' + statRoll.statRollsList[1].diceRolls + ')';
-
-        var roll2Sum = statRoll.statRollsList[2].diceRolls[0] +
-            statRoll.statRollsList[2].diceRolls[1] +
-            statRoll.statRollsList[2].diceRolls[2];
-        stat2.innerHTML = 'Roll 3: ' + roll2Sum +
-            ' (' + statRoll.statRollsList[2].diceRolls + ')';
-
-        var roll3Sum = statRoll.statRollsList[3].diceRolls[0] +
-            statRoll.statRollsList[3].diceRolls[1] +
-            statRoll.statRollsList[3].diceRolls[2];
-        stat3.innerHTML = 'Roll 4: ' + roll3Sum +
-            ' (' + statRoll.statRollsList[3].diceRolls + ')';
-
-        var roll4Sum = statRoll.statRollsList[4].diceRolls[0] +
-            statRoll.statRollsList[4].diceRolls[1] +
-            statRoll.statRollsList[4].diceRolls[2];
-        stat4.innerHTML = 'Roll 5: ' + roll4Sum +
-            ' (' + statRoll.statRollsList[4].diceRolls + ')';
-
-        var roll5Sum = statRoll.statRollsList[5].diceRolls[0] +
-            statRoll.statRollsList[5].diceRolls[1] +
-            statRoll.statRollsList[5].diceRolls[2];
-        stat5.innerHTML = 'Roll 6: ' + roll5Sum +
-            ' (' + statRoll.statRollsList[5].diceRolls + ')';
-
-
-        // stat1.innerHTML = statRoll.statRollsList[1].diceRolls;
-        // stat2.innerHTML = statRoll.statRollsList[2].diceRolls;
-        // stat3.innerHTML = statRoll.statRollsList[3].diceRolls;
-        // stat4.innerHTML = statRoll.statRollsList[4].diceRolls;
-        // stat5.innerHTML = statRoll.statRollsList[5].diceRolls;
+    function getStatHtml(statRoll, statRollNumber) {
+        var rollSum = statRoll.diceRolls[0] + statRoll.diceRolls[1] + statRoll.diceRolls[2];
+        var usedRollsString = statRoll.diceRolls[0] + ', ' + statRoll.diceRolls[1] + ', ' + statRoll.diceRolls[2];
+        return 'Roll ' + statRollNumber + ': ' + rollSum +
+            ' (' + usedRollsString + ', <s>' + statRoll.diceRolls[3] + '</s>)';
     }
 
     window.onload = () => {
