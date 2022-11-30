@@ -26,7 +26,7 @@
     let stat5 = document.getElementById("stat5");
 
     function rollStats() {
-        fetch("/roll", {method: "POST"})
+        fetch("/roll", {method: "GET"})
             .then(response => response.json())
             .then(statRoll => outputToPage(statRoll))
         ;
